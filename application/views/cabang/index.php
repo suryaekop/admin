@@ -24,7 +24,7 @@
             <thead>
                 <tr>
                     <th width="30">No.</th>
-                    <th>No Cabang</th>
+                    <th>Kode Cabang</th>
                     <th>Nama Cabang</th>
                     <th>Alamat</th>
                     <th>Jumlah Transaksi</th>
@@ -38,7 +38,7 @@
                         ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $cabang['nocabang']; ?></td>
+                            <td><?= $cabang['kodecabang']; ?></td>
                             <td><?= $cabang['namacabang']; ?></td>
                             <td><?= $cabang['alamat']; ?></td>
                             <td><?= $cabang['jumlahtransaksi'];?></td>

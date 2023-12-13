@@ -37,8 +37,13 @@
                         <?= form_error('nomor', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
-
-                <br>
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="email">Email</label>
+                    <div class="col-md-6">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="email">
+                        <?= form_error('email', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>
                 <div class="row form-group justify-content-end">
                     <div class="col-md-8">
                         <button type="submit" class="btn btn-primary btn-icon-split">

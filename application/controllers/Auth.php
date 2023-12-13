@@ -9,6 +9,7 @@ class Auth extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('Auth_model', 'auth');
         $this->load->model('Admin_model', 'admin');
+        $this->load->model('Member_model','member');
     }
 
     private function _has_login()
@@ -98,4 +99,9 @@ class Auth extends CI_Controller
             }
         }
     }
+    public function login_member()
+	{
+        $data['title'] = 'Login Member';
+		$this->template->load('templates/auth', 'auth/loginmember', $data);
+	}
 }

@@ -34,9 +34,29 @@ class Member_model extends CI_Model{
     {
         return $this->db->get_where('member',array('nomor' => $nomor))->row();
     }
+    public function get_by_email($email)
+    {
+        return $this->db->get_where('member',array('email' => $email))->row();
+    }
     public function find_by_nohp($nohp){
         $result = $this->db->query("SELECT * from member where nomor = $nohp")->result_array();
         return $result;
+    }
+    public function cari_detail_id($id){
+        $result =  $this->db->query("SELECT * from member WHERE id='$id'")->result_array();
+        if($result){
+            return $result[0];
+        }else{
+            return false;
+        }
+    }
+    public function cari_transaksi_id($id){
+        $result =  $this->db->query("SELECT * from transaksi WHERE idmember='$id'")->result_array();
+        if($result){
+            return $result[0];
+        }else{
+            return false;
+        }
     }
     
 }

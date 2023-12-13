@@ -47,7 +47,7 @@
                 <div class="sidebar-brand-icon">
                 <i class="fas fa-id-card"></i>
                 </div>
-                <div class="sidebar-brand-text mx-2">Member resto</div>
+                <div class="sidebar-brand-text mx-2">Admin resto</div>
             </a>
             
 

@@ -51,7 +51,7 @@
                             <?php
                             foreach ($cabang as $cg => $cbg){
                                 ?>
-                                <option value="<?= $cbg['id']?>"><?= $cbg['nocabang']?> | <?= $cbg['namacabang']?></option>
+                                <option value="<?= $cbg['id']?>"><?= $cbg['kodecabang']?> | <?= $cbg['namacabang']?></option>
                                 <?php
                                 
                             }

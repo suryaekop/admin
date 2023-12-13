@@ -23,6 +23,7 @@ class Member extends CI_Controller {
         parent::__construct();
         //load model divisi_model,nama objeknya = divisi
         $this->load->model('member_model','member');
+        $this->load->model('transaksi_model','transaksi');
     }
 	public function index()
 	{
@@ -37,18 +38,19 @@ class Member extends CI_Controller {
     public function tambah_save()
     {
         $this->form_validation->set_rules("namamember","Nama Member","required");
-        $this->form_validation->set_rules("nomor","Nomor","required|callback_check_unique_number");
+        $this->form_validation->set_rules("nomor","Nomor","required|callback_check_unique_number|min_length[11]");
+        $this->form_validation->set_rules("email","Email","required|callback_check_unique_email");
         if($this->form_validation->run() == FALSE){
             echo validation_errors();
         }else{
             $namamember = $this->input->post("namamember");
             $nomor = $this->input->post("nomor");
-            $alamat = null;
+            $email = $this->input->post("email");
             $poin = 0;
             $data = array(
                 'namamember' => $namamember,
                 'nomor' => $nomor,
-                'alamat' => $alamat,
+                'email' => $email,
                 'poin' => $poin
             );
             $this->db->insert('member',$data);
@@ -66,4 +68,23 @@ class Member extends CI_Controller {
             return TRUE;
         }
     }
+    public function check_unique_email($email){
+        $existing_number = $this->member->get_by_email($email);
+
+        if($existing_number){
+            $this->form_validation->set_message('check_unique_email','Email sudah digunakan');
+            return FALSE;
+        }else{
+            return TRUE;
+        }
+    }
+
+    public function detail(){
+        $data['title'] = "Detail Member";
+        $id = $this->uri->segment('3');
+        $data['members'] = $this->member->cari_detail_id($id);
+        $data['trans'] = $this->transaksi->getTransaksiByIdMember($id);
+		$this->template->load('templates/dashboard', 'member/detail', $data);
+    }
+    
 }

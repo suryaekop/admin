@@ -18,6 +18,12 @@ class Transaksi_model extends CI_Model {
         // Logic to retrieve transaction data based on ID from the table
         return $this->db->get_where($this->table, array('id' => $id))->row();
     }
+    public function getTransaksiByIdMember($id) {
+        // Logic to retrieve transaction data based on ID from the table
+        $this->db->where('idmember', $id);
+        $query = $this->db->get('transaksi'); // Ganti 'nama_tabel_transaksi' dengan nama tabel transaksi Anda
+        return $query->result_array();
+    }
 
     public function insert($data) {
         // Insert data into the 'transaksi' table

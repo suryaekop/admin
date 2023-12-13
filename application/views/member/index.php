@@ -26,6 +26,7 @@
                     <th width="30">No.</th>
                     <th>Nama Member</th>
                     <th>Nomor Handphone</th>
+                    <th>Email</th>
                     <th>Poin</th>
                     <th>Aksi</th>
                 </tr>
@@ -40,8 +41,9 @@
                             <td><?= $no++; ?></td>
                             <td><?= $member['namamember']; ?></td>
                             <td><?= $member['nomor']; ?></td>
+                            <td><?= $member['email']; ?></td>
                             <td><?= $member['poin']; ?></td>
-                            <td><button type="button">Detail</button></td>
+                            <td><a href="<?= base_url("member/detail/{$member['id']}")?>" class="btn btn-primary">Detail Member</a></td>
                         </tr>
                     <?php endforeach;
                     else : ?>

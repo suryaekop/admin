@@ -11,24 +11,20 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center mb-4">
-                                <h1 class="h4 text-gray-900">Amigos Admin</h1>
+                                <h1 class="h4 text-gray-900">Amigos Member</h1>
                                 <span class="text-muted">Login</span>
                             </div>
                             <?= $this->session->flashdata('pesan'); ?>
                             <?= form_open('', ['class' => 'user']); ?>
                             <div class="form-group">
-                                <input autofocus="autofocus" autocomplete="off" value="<?= set_value('username'); ?>" type="text" name="username" class="form-control form-control-user" placeholder="Username">
+                                <input autofocus="autofocus" autocomplete="off" value="<?= set_value('nomor'); ?>" type="text" name="nomor" class="form-control form-control-user" placeholder="Masukkan No Handphone">
                                 <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
-                                <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Login
                             </button>
                             <div class="text-center mt-4">
-                                <a class="small" href="<?= base_url('register') ?>">Buat Akun!</a>
+                                <a class="small" href="<?= base_url('auth') ?>">Login Admin</a>
                             </div>
                             <?= form_close(); ?>
                         </div>
