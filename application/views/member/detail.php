@@ -26,41 +26,43 @@
                 <br>
                 <br>
                 <table>
+                <?php if ($member) : ?>
                     <tr>
                         <td>Nama Member</td>
                         <td>:</td>
-                        <td><strong><?= $members['namamember'] ?></strong></td>
+                        <td><strong><?= $member->namamember ?></strong></td>
                     </tr>
                     <tr>
                         <td>Nomor Telepon</td>
                         <td>:</td>
-                        <td><strong><?= $members['nomor'] ?></strong></td>
+                        <td><strong><?= $member->nomor ?></strong></td>
                     </tr>
                     <tr>
                         <td>Alamat</td>
                         <td>:</td>
-                        <td><strong><?= $members['alamat'] ?></strong></td>
+                        <td><strong><?= $member->alamat ?></strong></td>
                     </tr>
                     <tr>
                         <td>Email</td>
                         <td>:</td>
-                        <td><strong><?= $members['email'] ?></strong></td>
+                        <td><strong><?= $member->email?></strong></td>
                     </tr>
                     <tr>
                         <td>Jenis Kelamin</td>
                         <td>:</td>
-                        <td><strong><?= $members['jeniskelamin'] ?></strong></td>
+                        <td><strong><?= $member->jeniskelamin ?></strong></td>
                     </tr>
                     <tr>
                         <td>Tanggal Lahir</td>
                         <td>:</td>
-                        <td><strong><?= $members['tanggallahir'] ?></strong></td>
+                        <td><strong><?= $member->tanggallahir ?></strong></td>
                     </tr>
                     <tr>
                         <td>Tempat Lahir</td>
                         <td>:</td>
-                        <td><strong><?= $members['tempatlahir'] ?></strong></td>
+                        <td><strong><?= $member->tempatlahir ?></strong></td>
                     </tr>
+                    <?php endif; ?>
                 </table>
             </div>
             <div class="table-responsive">

@@ -43,13 +43,12 @@ class Member_model extends CI_Model{
         return $result;
     }
     public function cari_detail_id($id){
-        $result =  $this->db->query("SELECT * from member WHERE id='$id'")->result_array();
-        if($result){
-            return $result[0];
-        }else{
-            return false;
-        }
+        $this->db->where('id', $id);
+        $query = $this->db->get('member'); // replace 'your_member_table_name' with your actual table name
+
+        return $query->row();
     }
+    
     public function cari_transaksi_id($id){
         $result =  $this->db->query("SELECT * from transaksi WHERE idmember='$id'")->result_array();
         if($result){
@@ -58,5 +57,11 @@ class Member_model extends CI_Model{
             return false;
         }
     }
-    
+    // Member_model.php
+
+
+
+
+    // Metode lainnya, jika ada
 }
+

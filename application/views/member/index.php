@@ -43,7 +43,9 @@
                             <td><?= $member['nomor']; ?></td>
                             <td><?= $member['email']; ?></td>
                             <td><?= $member['poin']; ?></td>
-                            <td><a href="<?= base_url("member/detail/{$member['id']}")?>" class="btn btn-primary">Detail Member</a></td>
+                            <td><a href="<?= base_url("member/detail/{$member['id']}")?>" class="btn btn-primary">Detail Member</a>
+                            <a href="<?= base_url("member/edit/{$member['id']}")?>" class="btn btn-success">Edit Member</a></a></td>
+                            
                         </tr>
                     <?php endforeach;
                     else : ?>

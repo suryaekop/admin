@@ -82,9 +82,69 @@ class Member extends CI_Controller {
     public function detail(){
         $data['title'] = "Detail Member";
         $id = $this->uri->segment('3');
-        $data['members'] = $this->member->cari_detail_id($id);
+        $data['member'] = $this->member->cari_detail_id($id);
         $data['trans'] = $this->transaksi->getTransaksiByIdMember($id);
 		$this->template->load('templates/dashboard', 'member/detail', $data);
     }
+    public function edit(){
+        $data['title'] = "Edit Member";
+    $id = $this->uri->segment('3');
+
+    // Pastikan $id valid sebelum digunakan
+    if (!empty($id) && is_numeric($id)) {
+        // Cek apakah member dengan ID tersebut ada
+        $data['member'] = $this->member->cari_detail_id($id);
+
+        // Pastikan member ditemukan sebelum memuat template
+        if ($data['member']) {
+            // Load template dengan data yang telah disiapkan
+            $this->template->load('templates/dashboard', 'member/edit', $data);
+        } else {
+            // Handle jika member tidak ditemukan
+            echo "Member tidak ditemukan.";
+        }
+    } else {
+        // Handle jika $id tidak valid
+        echo "ID member tidak valid.";
+    }
+    }
+    public function edit_member(){
+        $this->form_validation->set_rules("namamember","Nama Member","required");
+        $this->form_validation->set_rules("nomor","Nomor","required");
+        $this->form_validation->set_rules("alamat","Alamat","required");
+        $this->form_validation->set_rules("email","Email","required");
+        $this->form_validation->set_rules("jeniskelamin","Jenis Kelamin","required");
+        $this->form_validation->set_rules("tanggallahir","Tanggal Lahir","required");
+        $this->form_validation->set_rules("tempatlahir","Tempat Lahir","required");
+        $this->form_validation->set_rules("poin","Poin","required");
+        if($this->form_validation->run() == FALSE){
+            echo validation_errors();
+        }else{
+            $namamember = $this->input->post("namamember");
+            $nomor = $this->input->post("nomor");
+            $alamat = $this->input->post("alamat");
+            $email = $this->input->post("email");
+            $jeniskelamin = $this->input->post("jeniskelamin");
+            $tanggallahir = $this->input->post("tanggallahir");
+            $tempatlahir = $this->input->post("tempatlahir");
+            $poin = $this->input->post("poin");
+            $data = array(
+                'namamember' => $namamember,
+                'nomor' => $nomor,
+                'alamat' => $alamat,
+                'email' => $email,
+                'jeniskelamin' => $jeniskelamin,
+                'tanggallahir' => $tanggallahir,
+                'tempatlahir' => $tempatlahir,
+                'poin' => $poin
+            );
+            var_dump($data);
+            $this->db->where('nomor',$nomor);
+            $this->db->update('member',$data);
+            $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data Berhasil Diupdate</div>');
+            redirect('member');
+        }
+    }
+    
     
 }
