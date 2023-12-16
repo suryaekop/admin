@@ -20,4 +20,11 @@ class Dashboard extends CI_Controller
         $data['transaksi'] = $this->admin->count('transaksi');         
         $this->template->load('templates/dashboard', 'dashboard', $data);
     }
+    public function kasir()
+    {
+        $data['title'] = "Dashboard Kasir";
+        $data['transaksi'] = $this->admin->count('transaksi');         
+        $this->template->load('templates/kasir', 'dashboardKasir', $data);
+    }
+    
 }

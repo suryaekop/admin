@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title><?= $title; ?></title>
+    <link rel="icon" href="<?= base_url(); ?>assets/img/monkey.png" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,7 +21,7 @@
 
     <style>
         .bg-login-image {
-            background-image: url("<?= base_url('assets/img/ohu.jpg'); ?>");
+            background-image: url("<?= base_url('assets/img/logo.png'); ?>");
             background-repeat: no-repeat;
             background-size: 80%;
         }
@@ -28,7 +29,7 @@
 </head>
 
 
-<body class="bg-gradient-primary">
+<body style="background-image: url('assets/img/merah.png')">
 
     <div class="container">
 

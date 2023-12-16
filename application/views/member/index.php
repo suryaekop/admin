@@ -18,6 +18,14 @@
                 </a>
             </div>
         </div>
+        <form action="<?= base_url('member/cari') ?>" method="get" class="mt-3">
+            <div class="input-group">
+                <input type="text" name="keyword" class="form-control" placeholder="Cari member...">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="table-responsive">
         <table class="table table-striped dt-responsive nowrap" id="dataTable">
@@ -43,8 +51,8 @@
                             <td><?= $member['nomor']; ?></td>
                             <td><?= $member['email']; ?></td>
                             <td><?= $member['poin']; ?></td>
-                            <td><a href="<?= base_url("member/detail/{$member['id']}")?>" class="btn btn-primary">Detail Member</a>
-                            <a href="<?= base_url("member/edit/{$member['id']}")?>" class="btn btn-success">Edit Member</a></a></td>
+                            <td><a href="<?= base_url("member/detail/{$member['id']}")?>" class="btn btn-primary">Detail</a>
+                            <a href="<?= base_url("member/edit/{$member['id']}")?>" class="btn btn-success">Edit</a></a></td>
                             
                         </tr>
                     <?php endforeach;

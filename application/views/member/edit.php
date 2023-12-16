@@ -40,7 +40,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="nomor">Nomor Handphone</label>
                     <div class="col-md-6">
-                        <input type="text" id="nomor" name="nomor" class="form-control" placeholder="nomor" value="<?= $member->nomor; ?>" readonly>
+                        <input type="text" id="nomor" name="nomor" class="form-control" placeholder="nomor" value="<?= $member->nomor; ?>">
                         <?= form_error('nomor', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="email">Email</label>
                     <div class="col-md-6">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="email" value="<?= $member->email; ?>" readonly>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="email" value="<?= $member->email; ?>">
                         <?= form_error('email', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
@@ -79,13 +79,6 @@
                     <div class="col-md-6">
                         <input type="text" id="tempatlahir" name="tempatlahir" class="form-control" placeholder="tempatlahir" value="<?= $member->tempatlahir; ?>">
                         <?= form_error('tempatlahir', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="email">Poin</label>
-                    <div class="col-md-6">
-                        <input type="text" id="poin" name="poin" class="form-control" placeholder="poin" value="<?= $member->poin; ?>" readonly>
-                        <?= form_error('poin', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="row form-group justify-content-end">

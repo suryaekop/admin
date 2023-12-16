@@ -24,10 +24,10 @@
                 <?= $this->session->flashdata('pesan'); ?>
                 <?php echo form_open_multipart('cabang/tambah_save'); ?>
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="nocabang">No Cabang</label>
+                    <label class="col-md-4 text-md-right" for="kodecabang">No Cabang</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('nocabang'); ?>" type="text" id="nocabang" name="nocabang" class="form-control" placeholder="Masukkan Nama Member">
-                        <?= form_error('nocabang', '<span class="text-danger small">', '</span>'); ?>
+                        <input value="<?= set_value('kodecabang'); ?>" type="text" id="kodecabang" name="kodecabang" class="form-control" placeholder="Masukkan Nama Member">
+                        <?= form_error('kodecabang', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="row form-group">

@@ -57,6 +57,13 @@ class Member_model extends CI_Model{
             return false;
         }
     }
+    public function cari_member($keyword) {
+        $this->db->like('namamember', $keyword);
+        $this->db->or_like('nomor', $keyword);
+        $this->db->or_like('email', $keyword);
+    
+        return $this->db->get('member')->result_array();
+    }
     // Member_model.php
 
 

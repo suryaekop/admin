@@ -12,6 +12,7 @@ class User extends CI_Controller
         }
 
         $this->load->model('Admin_model', 'admin');
+        $this->load->model('Cabang_model', 'cabang');
         $this->load->library('form_validation');
     }
 
@@ -37,9 +38,13 @@ class User extends CI_Controller
             $db = $this->admin->get('user', ['id_user' => $this->input->post('id_user', true)]);
             $username = $this->input->post('username', true);
             $email = $this->input->post('email', true);
-
+            $uniq_username = '';
+            $uniq_email = '';
+            if($db){
             $uniq_username = $db['username'] == $username ? '' : '|is_unique[user.username]';
             $uniq_email = $db['email'] == $email ? '' : '|is_unique[user.email]';
+            }
+            
 
             $this->form_validation->set_rules('username', 'Username', 'required|trim|alpha_numeric' . $uniq_username);
             $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email' . $uniq_email);
@@ -52,15 +57,24 @@ class User extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = "Tambah User";
+            $data['cabang'] = $this->cabang->find_all();
             $this->template->load('templates/dashboard', 'user/add', $data);
         } else {
             $input = $this->input->post(null, true);
+            $cabang = null;
+            $namacabang = null;
+            if($input['role'] == 'kasir'){
+                $cabang = $input['idcabang'];
+                $namacabang = $input['namacabang'];
+            }
             $input_data = [
                 'nama'          => $input['nama'],
                 'username'      => $input['username'],
                 'email'         => $input['email'],
                 'no_telp'       => $input['no_telp'],
                 'role'          => $input['role'],
+                'idcabang'       => $input['idcabang'],
+                'namacabang'    => $input['namacabang'],
                 'password'      => password_hash($input['password'], PASSWORD_DEFAULT),
                 'created_at'    => time(),
                 'foto'          => 'user.png'
@@ -83,16 +97,25 @@ class User extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = "Edit User";
+            $data['cabang'] = $this->cabang->find_all();
             $data['user'] = $this->admin->get('user', ['id_user' => $id]);
             $this->template->load('templates/dashboard', 'user/edit', $data);
         } else {
             $input = $this->input->post(null, true);
+            $cabang = null;
+            $namacabang = null;
+            if($input['role'] == 'kasir'){
+                $cabang = $input['idcabang'];
+                $namacabang = $input['namacabang'];
+            }
             $input_data = [
                 'nama'          => $input['nama'],
                 'username'      => $input['username'],
                 'email'         => $input['email'],
                 'no_telp'       => $input['no_telp'],
-                'role'          => $input['role']
+                'role'          => $input['role'],
+                'idcabang'      => $input['idcabang'],
+                'namacabang'    => $input['namacabang']
             ];
 
             if ($this->admin->update('user', 'id_user', $id, $input_data)) {

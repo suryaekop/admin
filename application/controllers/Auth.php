@@ -14,14 +14,13 @@ class Auth extends CI_Controller
 
     private function _has_login()
     {
-        if ($this->session->has_userdata('login_session')) {
-            redirect('dashboard');
+        if (!$this->session->has_userdata('login_session')) {
+            redirect('auth');
         }
     }
 
     public function index()
     {
-        $this->_has_login();
 
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
@@ -46,6 +45,19 @@ class Auth extends CI_Controller
                             'role'  => $user_db['role'],
                             'timestamp' => time()
                         ];
+                        
+                        if ($user_db['role'] == 'kasir') {
+                            $idcabang = $this->auth->get_branch_id($user_db['id_user']);
+                            $namacabang = $this->auth->get_name_id($user_db['id_user']);
+                            $userdata['idcabang'] = $idcabang;
+                            $userdata['namacabang'] = $namacabang;
+                            $this->session->set_userdata('login_session', $userdata);
+                            redirect('dashboard/kasir'); // Sesuaikan dengan URL dashboard kasir Anda
+                        } else {
+                             // Redirect ke dashboard umum untuk peran lainnya
+                             $this->session->set_userdata('login_session', $userdata);
+                             redirect('dashboard');
+                        }
                         $this->session->set_userdata('login_session', $userdata);
                         redirect('dashboard');
                     }

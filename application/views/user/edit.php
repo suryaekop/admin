@@ -66,6 +66,23 @@
                         <?= form_error('role', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
+                <div class="row form-group" id="divCabang" style="display: none;">
+                    <label class="col-md-4 text-md-right" for="idcabang">Cabang</label>
+                    <div class="col-md-6">
+                        <!-- Tambahkan input field untuk cabang di sini -->
+                        <select name="idcabang" id="idcabang" class="form-control">
+                            <?php
+                            foreach ($cabang as $cg => $cbg){
+                                ?>
+                                <option value="<?= $cbg['id']?>"><?= $cbg['kodecabang']?> | <?= $cbg['namacabang']?></option>
+                                <?php
+                                
+                            }
+                            ?>
+                        </select>
+                        <?= form_error('cabang', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>
                 <br>
                 <div class="row form-group justify-content-end">
                     <div class="col-md-8">
@@ -81,3 +98,19 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Tangkap perubahan pada radio button dengan name='role'
+    $('input[name="role"]').change(function(){
+        // Periksa apakah yang dipilih adalah 'kasir'
+        if ($(this).val() === 'kasir') {
+            // Jika 'kasir', tampilkan field cabang
+            $('#divCabang').show();
+        } else {
+            // Jika 'admin' atau yang lainnya, sembunyikan field cabang
+            $('#divCabang').hide();
+        }
+    });
+});
+</script>

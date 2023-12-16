@@ -28,6 +28,7 @@
                     <th>Nama Cabang</th>
                     <th>Alamat</th>
                     <th>Jumlah Transaksi</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,7 @@
                             <td><?= $cabang['namacabang']; ?></td>
                             <td><?= $cabang['alamat']; ?></td>
                             <td><?= $cabang['jumlahtransaksi'];?></td>
+                            <td><a href="<?= base_url("cabang/getTransaksiCabang/{$cabang['id']}")?>" class="btn btn-primary">Detail</a>
                         </tr>
                     <?php endforeach;
                     else : ?>

@@ -45,7 +45,7 @@
                 </div>
                 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="nocabang">No Cabang</label>
+                    <label class="col-md-4 text-md-right" for="nocabang">Nama Cabang</label>
                     <div class="col-md-6">
                         <select name="nocabang" id="nocabang" class="form-control">
                             <?php

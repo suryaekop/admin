@@ -72,8 +72,8 @@
                     <th width="30">No.</th>
                     <th>Kode Transaksi</th>
                     <th>Tanggal Transaksi</th>
-                    <th>No Cabang</th>
-                    <th>Id Member</th>
+                    <th>Nama Cabang</th>
+                    <th>Nama Kasir</th>
                     <th>Total</th>
                 </tr>
             </thead>
@@ -84,11 +84,11 @@
                         ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $tran['kodetransaksi'] ?></td>
-                            <td><?= $tran['tanggaltransaksi']; ?></td>
-                            <td><?= $tran['nocabang']; ?></td>
-                            <td><?= $tran['idmember']; ?></td>
-                            <td><?= $tran['total']; ?></td>
+                            <td><?= $tran->kodetransaksi ?></td>
+                            <td><?= $tran->tanggaltransaksi ?></td>
+                            <td><?= $tran->namacabang ?></td>
+                            <td><?= $tran->nama?></td>
+                            <td><?= $tran->total ?></td>
                         </tr>
                         <?php
                     }?>

@@ -4,10 +4,12 @@
 <head>
 
     <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><?= $title; ?> | Member Resto</title>
+    <link rel="icon" href="<?= base_url(); ?>assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- Custom fonts for this template-->
@@ -43,12 +45,11 @@
         <ul class="navbar-nav bg-white sidebar sidebar-light accordion shadow-sm" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex text-white align-items-center bg-primary justify-content-center" href="">
+            <a class="sidebar-brand d-flex text-white align-items-center bg-primary justify-content-center" style="background-image: url('<?= base_url() ?>assets/img/merah.png'); background-size: cover; background-position: center;" href="">
                 <div class="sidebar-brand-icon">
-                <i class="fas fa-id-card"></i>
-                </div>
-                <div class="sidebar-brand-text mx-2">Admin resto</div>
-            </a>
+                <img src="<?= base_url() ?>assets/img/terasjapan.png" alt="Admin Logo" style="width: 24px; height: 24px; object-fit: cover;" class="mr-2">
+            <div class="sidebar-brand-text mx-2">Admin resto</div>
+            </div></a>
             
 
             <!-- Nav Item - Dashboard -->
@@ -64,14 +65,14 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Data 
+                Kasir
             </div>
 
             <!-- Nav Item - Dashboard -->
             
              <!-- Nav Item - Dashboard -->
              <li class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('transaksi/tambahs'); ?>">
+                <a class="nav-link pb-0" href="<?= base_url('transaksi '); ?>">
                 <i class="fas fa-money-check-alt"></i>
                     <span>Transaksi</span>
                 </a>
@@ -82,6 +83,7 @@
                     <span>Member</span>
                 </a>
             </li>
+            
 
             <?php if (is_admin()) : ?>
                 <!-- Divider -->
@@ -89,7 +91,7 @@
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Kelola
+                    Admin
                 </div>
 
                 <!-- Nav Item -->
@@ -131,8 +133,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark bg-primary topbar mb-4 static-top shadow-sm">
-
+                <nav class="navbar navbar-expand navbar-dark bg-primary topbar mb-4 static-top shadow-sm" style="background-image: url('<?= base_url() ?>assets/img/merah.png'); background-size: cover; background-position: center;">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link bg-transparent d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars text-white"></i>
@@ -144,8 +145,8 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline small text-capitalize">
-                                    <?= userdata('nama'); ?>
+                                <span class="mr-2 d-lg-inline small text-capitalize">
+                                    <div class="sidebar-brand-text mx-2" style="color: white; font-size: 15pt; font-weight: bold;"><?= userdata('nama'); ?></div>
                                 </span>
                                 <img class="img-profile rounded-circle" src="<?= base_url() ?>assets/img/avatar/<?= userdata('foto'); ?>">
                             </a>
@@ -218,7 +219,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Yakin ingin logout?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="modal-body">Klik "Logout" dibawah ini jika anda yakin ingin logout.</div>
@@ -257,7 +258,7 @@
     <script src="<?= base_url(); ?>assets/vendor/datatables/buttons/js/buttons.colVis.min.js"></script>
     <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
-    <scrip src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
 
 </body>
 

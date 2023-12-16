@@ -6,6 +6,7 @@ class Cabang extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Cabang_model','cabang');
+        $this->load->model('Transaksi_model','transaksi');
     }
 
     public function tambahs(){
@@ -24,19 +25,19 @@ class Cabang extends CI_Controller {
 
     public function tambah_save(){
         //validasi server side
-        $this->form_validation->set_rules('nocabang','No Cabang','required');
+        $this->form_validation->set_rules('kodecabang','Kode Cabang','required');
         $this->form_validation->set_rules('namacabang','Nama Cabang','required');
         $this->form_validation->set_rules('alamat','Alamat','required');
         if($this->form_validation->run() == FALSE){
             //validasi menemukan error
             echo validation_errors();
         } else {
-                $nocabang = $this->input->post('nocabang');
+                $kodecabang = $this->input->post('kodecabang');
                 $namacabang = $this->input->post('namacabang');
                 $alamat = $this->input->post('alamat');
                 $jumlahtransaksi = 0;
                 $data = array(
-                    'nocabang' => $nocabang,
+                    'kodecabang' => $kodecabang,
                     'namacabang' => $namacabang,
                     'alamat' => $alamat,
                     'jumlahtransaksi' => $jumlahtransaksi,
@@ -46,5 +47,13 @@ class Cabang extends CI_Controller {
                 $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data Berhasil Ditambahkan</div>');
                 redirect(base_url('cabang'));
             }
+        }
+        public function getTransaksiCabang()
+        {
+            $data['title'] = "Riwayat Transaksi Member";
+            $idcabang = $this->uri->segment('3');
+            $data['trans'] = $this->transaksi->getTransaksiByIdMemberWithDetails($idcabang);
+            $this->template->load('templates/dashboard', 'cabang/history', $data);
+
         }
 }

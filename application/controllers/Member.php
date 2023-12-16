@@ -31,9 +31,19 @@ class Member extends CI_Controller {
         $data['members'] = $this->member->find_all();
 		$this->template->load('templates/dashboard', 'member/index', $data);
 	}
+    public function indexKasir()
+	{
+        $data['title'] = "Member Management";
+        $data['members'] = $this->member->find_all();
+		$this->template->load('templates/kasir', 'member/indexKasir', $data);
+	}
     public function tambah() {
         $data['title'] = "Tambah Member";
         $this->template->load('templates/dashboard', 'member/add', $data);
+    }
+    public function tambahKasir() {
+        $data['title'] = "Tambah Member";
+        $this->template->load('templates/dashboard', 'member/addKasir', $data);
     }
     public function tambah_save()
     {
@@ -56,6 +66,29 @@ class Member extends CI_Controller {
             $this->db->insert('member',$data);
             $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data Berhasil Ditambahkan</div>');
             redirect(base_url('member'));
+        }
+    }
+    public function tambah_save_kasir()
+    {
+        $this->form_validation->set_rules("namamember","Nama Member","required");
+        $this->form_validation->set_rules("nomor","Nomor","required|callback_check_unique_number|min_length[11]");
+        $this->form_validation->set_rules("email","Email","required|callback_check_unique_email");
+        if($this->form_validation->run() == FALSE){
+            echo validation_errors();
+        }else{
+            $namamember = $this->input->post("namamember");
+            $nomor = $this->input->post("nomor");
+            $email = $this->input->post("email");
+            $poin = 0;
+            $data = array(
+                'namamember' => $namamember,
+                'nomor' => $nomor,
+                'email' => $email,
+                'poin' => $poin
+            );
+            $this->db->insert('member',$data);
+            $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data Berhasil Ditambahkan</div>');
+            redirect(base_url('member/indexKasir'));
         }
     }
     public function check_unique_number($nomor){
@@ -83,11 +116,11 @@ class Member extends CI_Controller {
         $data['title'] = "Detail Member";
         $id = $this->uri->segment('3');
         $data['member'] = $this->member->cari_detail_id($id);
-        $data['trans'] = $this->transaksi->getTransaksiByIdMember($id);
+        $data['trans'] = $this->transaksi->getTransaksiDetails($id);
 		$this->template->load('templates/dashboard', 'member/detail', $data);
     }
     public function edit(){
-        $data['title'] = "Edit Member";
+    $data['title'] = "Edit Member";
     $id = $this->uri->segment('3');
 
     // Pastikan $id valid sebelum digunakan
@@ -116,7 +149,6 @@ class Member extends CI_Controller {
         $this->form_validation->set_rules("jeniskelamin","Jenis Kelamin","required");
         $this->form_validation->set_rules("tanggallahir","Tanggal Lahir","required");
         $this->form_validation->set_rules("tempatlahir","Tempat Lahir","required");
-        $this->form_validation->set_rules("poin","Poin","required");
         if($this->form_validation->run() == FALSE){
             echo validation_errors();
         }else{
@@ -127,7 +159,6 @@ class Member extends CI_Controller {
             $jeniskelamin = $this->input->post("jeniskelamin");
             $tanggallahir = $this->input->post("tanggallahir");
             $tempatlahir = $this->input->post("tempatlahir");
-            $poin = $this->input->post("poin");
             $data = array(
                 'namamember' => $namamember,
                 'nomor' => $nomor,
@@ -136,7 +167,6 @@ class Member extends CI_Controller {
                 'jeniskelamin' => $jeniskelamin,
                 'tanggallahir' => $tanggallahir,
                 'tempatlahir' => $tempatlahir,
-                'poin' => $poin
             );
             var_dump($data);
             $this->db->where('nomor',$nomor);
@@ -144,6 +174,12 @@ class Member extends CI_Controller {
             $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data Berhasil Diupdate</div>');
             redirect('member');
         }
+    }
+    public function cari() {
+        $data['title'] = "Member Management";
+        $keyword = $this->input->get('keyword');
+        $data['members'] = $this->member->cari_member($keyword);
+        $this->template->load('templates/dashboard', 'member/cari',$data);
     }
     
     

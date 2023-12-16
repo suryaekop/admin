@@ -26,7 +26,12 @@ class Profile extends CI_Controller
 
     private function _validasi()
     {
-        $db = $this->admin->get('user', ['id_user' => $this->input->post('id_user', true)]);
+        $login_session_data = $this->session->userdata('login_session');
+        $iduser = $login_session_data['user'];
+        $db = $this->admin->get('user', ['id_user' => $iduser]);
+        
+
+        if($db !== null){
         $username = $this->input->post('username', true);
         $email = $this->input->post('email', true);
 
@@ -37,6 +42,10 @@ class Profile extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email' . $uniq_email);
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|trim|numeric');
+        }else{
+            echo "Data user tidak ditemukan";
+        }
+        
     }
 
     private function _config()
@@ -60,6 +69,7 @@ class Profile extends CI_Controller
             $this->template->load('templates/dashboard', 'profile/setting', $data);
         } else {
             $input = $this->input->post(null, true);
+            $foto_saat_ini = $this->user['foto'];
             if (empty($_FILES['foto']['name'])) {
                 $insert = $this->admin->update('user', 'id_user', $input['id_user'], $input);
                 if ($insert) {
@@ -73,8 +83,8 @@ class Profile extends CI_Controller
                     echo $this->upload->display_errors();
                     die;
                 } else {
-                    if (userdata('foto') != 'user.png') {
-                        $old_image = FCPATH . 'assets/img/avatar/' . userdata('foto');
+                    if ($foto_saat_ini != 'user.png') {
+                        $old_image = FCPATH . 'assets/img/avatar/' . $foto_saat_ini;
                         if (!unlink($old_image)) {
                             set_pesan('gagal hapus foto lama.');
                             redirect('profile/setting');
